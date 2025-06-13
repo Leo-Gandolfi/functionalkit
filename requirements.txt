@@ -1,0 +1,8 @@
+streamlit
+yt-dlp
+fpdf
+whisper
+docx2pdf
+pydub
+spleeter
+ffmpeg-python
