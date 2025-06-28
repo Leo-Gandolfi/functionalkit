@@ -1,10 +1,17 @@
-
 import streamlit as st
+from streamlit.components.v1 import html
 from pdf_converter import convert_to_pdf
 from media_extractor import extract_media
 from image_converter import convert_image_format
 
-st.set_page_config(page_title="SimpleKitTools", layout="wide")
+st.set_page_config(page_title="SimpleKitTools – PDF Converter & Video Downloader", layout="wide")
+
+# Google AdSense verification snippet
+adsense_script = """
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3104498902249259"
+        crossorigin="anonymous"></script>
+"""
+html(adsense_script, height=0)
 
 def ad_box(position="side"):
     styles = {
@@ -21,13 +28,13 @@ with left_col:
 
 with center_col:
     st.markdown(ad_box("top"), unsafe_allow_html=True)
-    st.title("🛠️ SimpleKitTools")
-    st.subheader("Simple, fast tools to make your digital life easier.")
+    st.title("🛠️ SimpleKitTools – PDF Converter, Video Downloader & More")
+    st.subheader("Convert documents, extract media, and download videos — all in one place.")
 
     tabs = st.tabs(["📄 Convert to PDF", "📷 Convert Image Format", "📥 Extract Media"])
 
     with tabs[0]:
-        st.header("Convert Image or Text to PDF")
+        st.header("🎯 Online PDF Converter")
         uploaded_files = st.file_uploader("Upload image(s) or text file(s):", type=["png", "jpg", "jpeg", "txt", "docx"], accept_multiple_files=True)
         if st.button("Generate PDF"):
             if uploaded_files:
@@ -38,7 +45,7 @@ with center_col:
                 st.warning("Please upload at least one file.")
 
     with tabs[1]:
-        st.header("Convert Image Format")
+        st.header("🖼️ Convert Image Format")
         image_file = st.file_uploader("Upload image file:", type=["png", "jpg", "jpeg", "webp", "bmp"])
         output_format = st.selectbox("Select output format:", ["PNG", "JPEG", "WEBP", "BMP"])
         if st.button("Convert Image"):
@@ -50,7 +57,7 @@ with center_col:
                 st.warning("Please upload an image file.")
 
     with tabs[2]:
-        st.header("Extract Audio or Video from Link")
+        st.header("🎥 Video Downloader and Media Extractor")
         video_url = st.text_input("Enter video URL (YouTube, TikTok, etc):")
         media_type = st.radio("Select type:", ["Audio (.mp3)", "Video (.mp4)"])
         if st.button("Download Media"):
@@ -61,6 +68,18 @@ with center_col:
                 st.download_button("Download", open(path, "rb"), file_name=label)
             else:
                 st.warning("Please enter a valid URL.")
+
+    with st.expander("🔎 About SimpleKitTools and its features"):
+        st.markdown("""
+        **SimpleKitTools** is your all-in-one tool for:
+
+        - 🧾 **PDF Converter** – Convert images and text files into PDF in seconds.
+        - 🎞️ **Video Downloader** – Download videos and audio from YouTube, TikTok and more.
+        - 🧰 **Media Extractor** – Extract high-quality audio or video from any public link.
+        - 🖼️ **Image Format Converter** – Switch between PNG, JPEG, BMP, WebP formats instantly.
+
+        Whether you need a simple PDF creator, a quick MP3 converter or an online video downloader, SimpleKitTools gets the job done — free and fast!
+        """)
 
     with st.container():
         st.markdown("---")
