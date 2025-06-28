@@ -1,8 +1,6 @@
 streamlit
-yt-dlp
+pillow
+python-docx
 fpdf
-whisper
-docx2pdf
-pydub
-spleeter
-ffmpeg-python
+yt_dlp
+moviepy
